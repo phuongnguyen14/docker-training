@@ -26,22 +26,26 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false, length = 120)
+    @Column(name = "title",nullable = false, length = 120)
     private String title;
 
-    @Column(length = 500)
+    @Column(name = "description")
     private String description;
 
-    @Column(nullable = false)
+    @Column(name = "completed", nullable = false)
     private boolean completed = false;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(nullable = false)
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted = false;
 
 }
 

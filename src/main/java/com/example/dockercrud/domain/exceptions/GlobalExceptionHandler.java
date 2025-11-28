@@ -24,7 +24,14 @@ public class GlobalExceptionHandler {
         body.put("errors", errors);
         return ResponseEntity.badRequest().body(body);
     }
-
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<Map<String, Object>> handleCustom(CustomException ex) {
+        HttpStatus status = ex.getStatus();
+        Map<String, Object> body = defaultBody(status);
+        body.put("message", ex.getMessage());
+        body.put("errorCode", ex.getMessageCode()); // ví dụ TITLE_ALREADY_EXISTS
+        return ResponseEntity.status(status).body(body);
+    }
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Map<String, Object>> handleRuntime(RuntimeException ex) {
         Map<String, Object> body = defaultBody(HttpStatus.BAD_REQUEST);

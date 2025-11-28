@@ -1,5 +1,8 @@
 package com.example.dockercrud.task;
 
+import com.example.dockercrud.app.dtos.TaskRequest;
+import com.example.dockercrud.app.response.TaskResponse;
+import com.example.dockercrud.domain.services.TaskService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

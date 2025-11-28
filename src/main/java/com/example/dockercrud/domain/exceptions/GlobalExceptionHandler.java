@@ -1,4 +1,4 @@
-package com.example.dockercrud.common;
+package com.example.dockercrud.domain.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

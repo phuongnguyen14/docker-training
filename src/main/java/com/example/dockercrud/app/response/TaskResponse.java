@@ -1,14 +1,16 @@
-package com.example.dockercrud.task;
+package com.example.dockercrud.app.response;
 
+import com.example.dockercrud.domain.entities.Task;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 public record TaskResponse(
         Long id,
         String title,
         String description,
         boolean completed,
-        Instant createdAt,
-        Instant updatedAt
+        LocalDateTime createdAt,
+        LocalDateTime updatedAt
 ) {
     public static TaskResponse fromEntity(Task task) {
         return new TaskResponse(

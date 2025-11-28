@@ -1,8 +1,14 @@
-package com.example.dockercrud.task;
+package com.example.dockercrud.domain.services;
 
+import com.example.dockercrud.app.response.TaskResponse;
+import com.example.dockercrud.domain.entities.Task;
+import com.example.dockercrud.domain.repositories.TaskRepository;
+import com.example.dockercrud.domain.exceptions.TaskNotFoundException;
+import com.example.dockercrud.app.dtos.TaskRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -33,6 +39,8 @@ public class TaskService {
         task.setTitle(request.title());
         task.setDescription(request.description());
         task.setCompleted(request.completed());
+        task.setCreatedAt(LocalDateTime.now());
+        task.setUpdatedAt(LocalDateTime.now());
         return TaskResponse.fromEntity(taskRepository.save(task));
     }
 
@@ -43,6 +51,7 @@ public class TaskService {
         task.setTitle(request.title());
         task.setDescription(request.description());
         task.setCompleted(request.completed());
+        task.setUpdatedAt(LocalDateTime.now());
         return TaskResponse.fromEntity(task);
     }
 

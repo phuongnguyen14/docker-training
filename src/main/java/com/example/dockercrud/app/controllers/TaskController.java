@@ -1,5 +1,8 @@
-package com.example.dockercrud.task;
+package com.example.dockercrud.app.controllers;
 
+import com.example.dockercrud.app.response.TaskResponse;
+import com.example.dockercrud.domain.services.TaskService;
+import com.example.dockercrud.app.dtos.TaskRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;

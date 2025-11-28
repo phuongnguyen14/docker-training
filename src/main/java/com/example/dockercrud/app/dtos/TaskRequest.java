@@ -1,4 +1,4 @@
-package com.example.dockercrud.task;
+package com.example.dockercrud.app.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

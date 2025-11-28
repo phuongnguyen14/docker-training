@@ -5,7 +5,6 @@ import com.example.dockercrud.domain.entities.Task;
 import com.example.dockercrud.domain.exceptions.CustomException;
 import com.example.dockercrud.domain.exceptions.ErrorMessage;
 import com.example.dockercrud.domain.repositories.TaskRepository;
-import com.example.dockercrud.domain.exceptions.TaskNotFoundException;
 import com.example.dockercrud.app.dtos.TaskDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,7 @@ public class TaskService {
     public TaskResponse findById(Long id) {
         return taskRepository.findById(id)
                 .map(TaskResponse::fromEntity)
-                .orElseThrow(() -> new TaskNotFoundException(id));
+                .orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, ErrorMessage.TASK_NOT_FOUND));
     }
     private void validDto(TaskDto dto){
         Optional<Task> existingTask = taskRepository.findByTitleAndIsDeletedFalse(dto.title());
@@ -43,6 +42,9 @@ public class TaskService {
         }
         if (dto.title() == null || dto.title().isEmpty()){
             throw new CustomException(HttpStatus.BAD_REQUEST,ErrorMessage.TITLE_REQUIRED);
+        }
+        if (dto.description() == null || dto.description().isEmpty()){
+            throw new CustomException(HttpStatus.BAD_REQUEST,ErrorMessage.DESCRIPTION_REQUIRED);
         }
     }
     @Transactional
@@ -60,7 +62,7 @@ public class TaskService {
     @Transactional
     public TaskResponse update(Long id, TaskDto dto) {
         Task task = taskRepository.findById(id)
-                .orElseThrow(() -> new TaskNotFoundException(id));
+                .orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, ErrorMessage.TASK_NOT_FOUND));
         validDto(dto);
         task.setTitle(dto.title());
         task.setDescription(dto.description());

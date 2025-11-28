@@ -6,9 +6,10 @@ public enum ErrorMessage implements BaseErrorMessage {
 
     // Require items
     TITLE_REQUIRED("Tiêu đề không được để trống"),
+    DESCRIPTION_REQUIRED("Mô tả không được để trống"),
 
     // Not found
-    TASK_NOT_FOUND("Không tìm thấy task")
+    TASK_NOT_FOUND("Không tìm thấy task"),
     ;
 
     public String val;

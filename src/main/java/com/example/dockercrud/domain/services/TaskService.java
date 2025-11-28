@@ -6,11 +6,10 @@ import com.example.dockercrud.domain.exceptions.CustomException;
 import com.example.dockercrud.domain.exceptions.ErrorMessage;
 import com.example.dockercrud.domain.repositories.TaskRepository;
 import com.example.dockercrud.domain.exceptions.TaskNotFoundException;
-import com.example.dockercrud.app.dtos.TaskRequest;
+import com.example.dockercrud.app.dtos.TaskDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -37,7 +36,7 @@ public class TaskService {
                 .map(TaskResponse::fromEntity)
                 .orElseThrow(() -> new TaskNotFoundException(id));
     }
-    private void validDto(TaskRequest dto){
+    private void validDto(TaskDto dto){
         Optional<Task> existingTask = taskRepository.findByTitleAndIsDeletedFalse(dto.title());
         if (existingTask.isPresent()) {
             throw new CustomException(HttpStatus.CONFLICT,ErrorMessage.TITLE_ALREADY_EXISTS);
@@ -47,7 +46,7 @@ public class TaskService {
         }
     }
     @Transactional
-    public TaskResponse create(TaskRequest dto) {
+    public TaskResponse create(TaskDto dto) {
         validDto(dto);
         Task task = new Task();
         task.setTitle(dto.title());
@@ -59,7 +58,7 @@ public class TaskService {
     }
 
     @Transactional
-    public TaskResponse update(Long id, TaskRequest dto) {
+    public TaskResponse update(Long id, TaskDto dto) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException(id));
         validDto(dto);

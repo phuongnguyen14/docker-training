@@ -3,7 +3,7 @@ package com.example.dockercrud.app.dtos;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record TaskRequest(
+public record TaskDto(
         @NotBlank(message = "Tiêu đề không được để trống")
         @Size(max = 120, message = "Tiêu đề tối đa 120 ký tự")
         String title,

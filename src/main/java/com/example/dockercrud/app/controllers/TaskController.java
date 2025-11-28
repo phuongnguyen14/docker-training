@@ -2,7 +2,7 @@ package com.example.dockercrud.app.controllers;
 
 import com.example.dockercrud.app.response.TaskResponse;
 import com.example.dockercrud.domain.services.TaskService;
-import com.example.dockercrud.app.dtos.TaskRequest;
+import com.example.dockercrud.app.dtos.TaskDto;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,12 +39,12 @@ public class TaskController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public TaskResponse create(@Valid @RequestBody TaskRequest request) {
+    public TaskResponse create(@Valid @RequestBody TaskDto request) {
         return taskService.create(request);
     }
 
     @PutMapping("/{id}")
-    public TaskResponse update(@PathVariable Long id, @Valid @RequestBody TaskRequest request) {
+    public TaskResponse update(@PathVariable Long id, @Valid @RequestBody TaskDto request) {
         return taskService.update(id, request);
     }
 

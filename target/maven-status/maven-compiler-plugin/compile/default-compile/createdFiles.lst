@@ -1,0 +1,9 @@
+com\example\dockercrud\task\TaskRepository.class
+com\example\dockercrud\common\GlobalExceptionHandler.class
+com\example\dockercrud\task\TaskRequest.class
+com\example\dockercrud\task\Task.class
+com\example\dockercrud\task\TaskService.class
+com\example\dockercrud\DockerCrudApplication.class
+com\example\dockercrud\task\TaskNotFoundException.class
+com\example\dockercrud\task\TaskResponse.class
+com\example\dockercrud\task\TaskController.class

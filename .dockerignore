@@ -1,0 +1,33 @@
+# Thư mục build từ client hoặc backend
+/dist
+/build
+/out
+/target
+
+# Node & Java
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Nếu dùng Java/Spring Boot
+/.mvn
+.mvnw
+.mvnw.cmd
+*.jar
+*.war
+*.class
+
+# Git & Editor rác
+.git
+.gitignore
+.idea
+.vscode
+*.iml
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
+
+# Môi trường – TUYỆT ĐỐI không đưa vào image
+.env
+.env.*
